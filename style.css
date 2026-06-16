@@ -180,6 +180,7 @@ body {
     display: inline-block;
     background: linear-gradient(135deg, var(--text-primary) 30%, var(--primary-color) 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -427,6 +428,7 @@ body {
     margin-bottom: 8px;
     background: linear-gradient(135deg, var(--text-primary) 30%, var(--primary-color) 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     letter-spacing: -1.5px;
 }
@@ -439,6 +441,7 @@ body {
     margin-bottom: 24px;
     background: linear-gradient(135deg, var(--text-secondary) 0%, var(--secondary-color) 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     letter-spacing: -0.5px;
 }
@@ -1470,6 +1473,7 @@ body {
     border-radius: 3px;
     outline: none;
     -webkit-appearance: none;
+    appearance: none;
     background: linear-gradient(to right, 
         hsl(0, 100%, 50%), 
         hsl(60, 100%, 50%), 
@@ -1482,6 +1486,7 @@ body {
 }
 .hue-range-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
+    appearance: none;
     width: 18px;
     height: 18px;
     border-radius: 50%;
