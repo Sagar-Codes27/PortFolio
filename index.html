@@ -7,10 +7,10 @@
     <meta name="author" content="Sagar">
     <title>Sagar | DevOps & Cloud Portfolio</title>
     
-    <!-- Google Fonts: Outfit for Headings, Inter for Body, JetBrains Mono for Code -->
+    <!-- Google Fonts: Outfit for Headings, Plus Jakarta Sans for Body, JetBrains Mono for Code -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="style.css">
@@ -46,6 +46,11 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
                 </button>
 
+                <!-- Accent Color Customizer Button -->
+                <button id="customizer-toggle" class="btn-icon customizer-btn" aria-label="Customizer colors" title="Customize Theme Accent Color">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                </button>
+
                 <!-- Mobile Menu Toggle -->
                 <button id="mobile-menu-toggle" class="btn-icon mobile-menu-btn" aria-label="Toggle navigation menu">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-menu"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -59,6 +64,10 @@
     <section id="hero" class="hero-section section-padding">
         <div class="container hero-grid">
             <div class="hero-content">
+                <div class="cyber-badge">
+                    <span class="badge-pulse"></span>
+                    <span>SYSTEM PORTFOLIO // RHCSA CERTIFIED</span>
+                </div>
                 <span class="hero-greeting" id="hero-salute">Hello, World! I am</span>
                 <h1 class="hero-name" id="hero-name-display">Sagar</h1>
                 <h2 class="hero-title" id="hero-title-display">B.Tech CSE Student</h2>
@@ -75,17 +84,27 @@
             
             <!-- Custom Dynamic Code Terminal Card -->
             <div class="hero-visual">
-                <div class="terminal-card">
+                <div class="terminal-card" id="interactive-terminal">
                     <div class="terminal-header">
                         <div class="terminal-buttons">
-                            <span class="t-btn t-close"></span>
-                            <span class="t-btn t-minimize"></span>
-                            <span class="t-btn t-expand"></span>
+                            <span class="t-btn t-close" id="term-close-btn" title="Clear terminal screen"></span>
+                            <span class="t-btn t-minimize" id="term-min-btn" title="Reset terminal state"></span>
+                            <span class="t-btn t-expand" id="term-expand-btn" title="Run demo command"></span>
                         </div>
-                        <div class="terminal-title" id="terminal-tab-title">sagar.cpp</div>
+                        <div class="terminal-title" id="terminal-tab-title">sagar.sh</div>
+                        <div class="terminal-status">bash</div>
                     </div>
-                    <div class="terminal-body">
-                        <pre><code class="code-editor" id="terminal-code-area">// Loading config details...</code></pre>
+                    <div class="terminal-body" id="terminal-console-body">
+                        <div id="terminal-stdout"></div>
+                        <div class="terminal-input-line">
+                            <span class="terminal-prompt">[visitor@sagar-linux ~]$</span>
+                            <span class="terminal-input-display" id="terminal-typed-content"></span>
+                            <span class="terminal-caret" id="terminal-custom-caret">█</span>
+                            <input type="text" id="terminal-hidden-input" autocomplete="off" aria-label="Terminal prompt input">
+                        </div>
+                    </div>
+                    <div class="terminal-footer">
+                        <span class="terminal-hint">Try typing: <span class="hint-cmd">help</span>, <span class="hint-cmd">neofetch</span>, <span class="hint-cmd">skills</span>, <span class="hint-cmd">projects</span></span>
                     </div>
                 </div>
             </div>
@@ -249,6 +268,78 @@
             </div>
         </div>
     </section>
+
+    <!-- Project Details Modal -->
+    <div class="modal-backdrop" id="project-details-modal">
+        <div class="glass-card modal-container">
+            <button class="btn-icon modal-close-btn" id="modal-close" aria-label="Close modal" title="Close details">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+            <div class="modal-content-body">
+                <div class="modal-header-section">
+                    <span class="modal-project-badge" id="modal-project-badge">Category</span>
+                    <h2 class="modal-project-title" id="modal-project-title">Project Title</h2>
+                    <div class="modal-tech-stack" id="modal-tech-stack"></div>
+                </div>
+                <hr class="modal-divider">
+                <div class="modal-grid-details">
+                    <div class="modal-left-col">
+                        <h3>Project Overview</h3>
+                        <p id="modal-project-desc">Overview details.</p>
+                        
+                        <h3>Key Challenges & Implementation</h3>
+                        <p id="modal-project-challenges">Challenge details.</p>
+                    </div>
+                    <div class="modal-right-col">
+                        <h3>System Architecture</h3>
+                        <div class="modal-architecture-container">
+                            <pre><code id="modal-architecture-code">Diagram here</code></pre>
+                        </div>
+                        <div class="modal-links-footer">
+                            <a href="#" target="_blank" class="btn btn-primary" id="modal-github-link-btn">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                                GitHub Source
+                            </a>
+                            <a href="#" target="_blank" class="btn btn-secondary" id="modal-live-link-btn">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                                Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Accent Color Customizer Slide-out Panel -->
+    <div class="customizer-panel glass-card" id="customizer-panel">
+        <div class="customizer-header">
+            <h3>Customize Theme</h3>
+            <button id="customizer-close" class="btn-icon" aria-label="Close Customizer" title="Close Customizer">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+        </div>
+        <div class="customizer-body">
+            <div class="customizer-section">
+                <label for="accent-hue-slider">Base Accent Hue: <span id="hue-value-display">220</span>°</label>
+                <input type="range" id="accent-hue-slider" min="0" max="360" value="220" class="hue-range-slider">
+                <div class="hue-preview-bar"></div>
+            </div>
+            
+            <div class="customizer-section">
+                <h4>Preset Themes</h4>
+                <div class="theme-presets">
+                    <button class="preset-btn" data-hue="220" style="background-color: hsl(220, 100%, 50%);" title="Standard Blue"></button>
+                    <button class="preset-btn" data-hue="190" style="background-color: hsl(190, 100%, 50%);" title="Cyber Cyan"></button>
+                    <button class="preset-btn" data-hue="150" style="background-color: hsl(150, 100%, 45%);" title="Emerald Green"></button>
+                    <button class="preset-btn" data-hue="280" style="background-color: hsl(280, 100%, 60%);" title="Purple Neon"></button>
+                    <button class="preset-btn" data-hue="25" style="background-color: hsl(25, 100%, 50%);" title="Amber Orange"></button>
+                    <button class="preset-btn" data-hue="350" style="background-color: hsl(350, 100%, 55%);" title="Crimson Red"></button>
+                </div>
+            </div>
+            <button id="reset-color-btn" class="btn btn-secondary btn-sm btn-block">Reset Colors</button>
+        </div>
+    </div>
 
     <!-- Toast Notification System -->
     <div class="toast-container" id="toast-box"></div>
